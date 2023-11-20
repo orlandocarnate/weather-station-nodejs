@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@arduino/arduino-iot-client": "^2.0.0",
+    "arduino-iot-js": "^0.11.0",
+    "dotenv": "^16.3.1",
+    "request-promise": "^4.2.6"
+  },
+  "type": "module"
+}
