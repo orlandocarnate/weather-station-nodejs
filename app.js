@@ -41,4 +41,28 @@ const run = async () => {
     });
 }
 
-run();
+// run();
+
+const listProperties = async () => {
+    const client = IotApi.ApiClient.instance;
+    // Configure OAuth2 access token for authorization: oauth2
+    const oauth2 = client.authentications['oauth2'];
+    oauth2.accessToken = await getToken();
+
+    const api = new IotApi.PropertiesV2Api(client)
+    const id = process.env.DEVICE_ID; // {String} The id of the thing
+
+    const opts = {
+      'showDeleted': false // {Boolean} If true, shows the soft deleted properties
+    };
+
+    api.propertiesV2List(id, opts).then(data => {
+        for (const obj of data) {
+            console.log(`VARIABLE: ${obj.variable_name}, VALUE: ${obj.last_value} \n`);
+        }; 
+    }, error => {
+        console.log(error)
+    });
+}
+
+listProperties();
